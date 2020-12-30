@@ -19,10 +19,10 @@ $ git clone https://github.com/alaa-shahin/chat.git
 
 ![Splash Screen](https://github.com/alaa-shahin/chat/blob/master/chat%20app%20screenshots/splash%20screen.png "Splash Screen")
 
-![Register Screen](https://github.com/alaa-shahin/chat/blob/master/chat%20app%20screenshots/register.png "Register Screen")
+![Register Screen](https://github.com/alaa-shahin/chat/blob/master/chat%20app%20screenshots/Register%20Screen.png "Register Screen")
 
-![Login Screen](https://github.com/alaa-shahin/chat/blob/master/chat%20app%20screenshots/login.png "Login Screen")
+![Login Screen](https://github.com/alaa-shahin/chat/blob/master/chat%20app%20screenshots/Login%20Screen.png "Login Screen")
 
-![Public chat Screen](https://github.com/alaa-shahin/chat/blob/master/chat%20app%20screenshots/public%20chat%20room.png "Public chat Screen")
+![Public chat Screen](https://github.com/alaa-shahin/chat/blob/master/chat%20app%20screenshots/Public%20chat%20Screen.png "Public chat Screen")
 
-![Logout Screen](https://github.com/alaa-shahin/chat/blob/master/chat%20app%20screenshots/logout.png "Logout Screen")
+![Profile Screen](https://github.com/alaa-shahin/chat/blob/master/chat%20app%20screenshots/Profile%20Screen.png "Profile Screen")

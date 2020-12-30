@@ -43,6 +43,11 @@ dependencies:
   shared_preferences: ^0.5.12+2
   image_picker: ^0.6.7+12
   provider: ^4.3.2+2
+  regexpattern: ^1.0.0
+  email_validator: ^1.0.6
+  validators: ^2.0.1
+  google_sign_in: ^4.5.6
+
 
 
 dev_dependencies:
@@ -64,6 +69,7 @@ flutter:
   assets:
     - assets/images/a3.jpg
     - assets/images/chat.png
+    - assets/images/google_logo.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

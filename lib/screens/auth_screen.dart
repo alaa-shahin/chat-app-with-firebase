@@ -1,13 +1,13 @@
-import 'dart:io';
-
+import 'package:chat_app/screens/chat_screen.dart';
+import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/widgets/Auth_form.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthScreen extends StatefulWidget {
+  static const routeName = '/AuthScreen';
+
   @override
   _AuthScreenState createState() => _AuthScreenState();
 }
@@ -16,12 +16,14 @@ class _AuthScreenState extends State<AuthScreen> {
   final _auth = FirebaseAuth.instance;
   bool _isLoading = false;
 
-  void _submitAuthForm(
+  Future<void> _submitAuthForm(
     String email,
     String password,
     String userName,
-    File image,
+    String age,
+    String profileImage,
     bool isLogin,
+    bool isGoogleLogin,
     BuildContext ctx,
   ) async {
     UserCredential userResult;
@@ -29,29 +31,49 @@ class _AuthScreenState extends State<AuthScreen> {
       setState(() {
         _isLoading = true;
       });
+
       if (isLogin) {
         userResult = await _auth.signInWithEmailAndPassword(
           email: email,
           password: password,
         );
+        Navigator.of(context).pushNamed(ChatScreen.routeName);
       } else {
         userResult = await _auth.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
-        final ref = FirebaseStorage.instance
-            .ref()
-            .child('user_image')
-            .child(userResult.user.uid + '.jpg');
-        ref.putFile(image);
-        final url = await ref.getDownloadURL();
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(userResult.user.uid)
-            .set({
-          'user': userName,
-          'password': password,
+        var res = await AuthService().createUserDocument(userResult.user.uid, {
+          'userName': userName,
+          'email': email,
+          'age': age,
+          'profileImage': profileImage,
         });
+        Navigator.of(context).pushNamed(ChatScreen.routeName);
+
+        if (null == res) {
+          Scaffold.of(ctx).showSnackBar(SnackBar(
+            content: Text('Successfully registered'),
+            backgroundColor: Theme.of(ctx).errorColor,
+          ));
+          Flushbar(
+            title: "Success",
+            message: "You are registered successfully!",
+            backgroundColor: Colors.green,
+            duration: Duration(seconds: 3),
+          )..show(ctx);
+        } else {
+          Scaffold.of(ctx).showSnackBar(SnackBar(
+            content: Text('Something went wrong, please try again later'),
+            backgroundColor: Theme.of(ctx).errorColor,
+          ));
+          Flushbar(
+            title: "Sorry",
+            message: "Something went wrong!\n Please try again later :(",
+            backgroundColor: Colors.red,
+            duration: Duration(seconds: 3),
+          )..show(ctx);
+        }
       }
     } on FirebaseAuthException catch (e) {
       String message = 'Error Occurred';
@@ -86,10 +108,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: AuthForm(
-        _submitAuthForm,
-        _isLoading,
-      ),
+      body: AuthForm(_submitAuthForm, _isLoading, AuthService().googleSignup),
     );
   }
 }

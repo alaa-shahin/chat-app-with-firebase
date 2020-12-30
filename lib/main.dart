@@ -1,7 +1,8 @@
 import 'package:chat_app/screens/auth_screen.dart';
+import 'package:chat_app/screens/profile_screen.dart';
 import 'package:chat_app/screens/splash_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'screens/chat_screen.dart';
@@ -12,7 +13,13 @@ void main() async {
   runApp(SplashScreens());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  static const routeName = '/';
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,13 +38,16 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+      initialRoute: '/',
+      routes: {
+        AuthScreen.routeName: (ctx) => AuthScreen(),
+        ChatScreen.routeName: (ctx) => ChatScreen(),
+        ProfileScreen.routeName: (ctx) => ProfileScreen(),
+      },
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (ctx, snapShot) {
-          if (snapShot.connectionState == ConnectionState.waiting) {
-            return SplashScreens();
-          }
-          if (snapShot.hasData) {
+        builder: (ctx, snapshot) {
+          if (snapshot.hasData) {
             return ChatScreen();
           } else {
             return AuthScreen();

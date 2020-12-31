@@ -13,32 +13,6 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  // final fbm = FirebaseMessaging();
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   subscripeToAdmin();
-  //   fbm.requestNotificationPermissions();
-  //   fbm.configure(
-  //     onMessage: (message) {
-  //       print(message);
-  //       return;
-  //     },
-  //     onResume: (message) {
-  //       Navigator.push(
-  //           context, MaterialPageRoute(builder: (context) => ChatScreen()));
-  //       return;
-  //     },
-  //     onLaunch: (message) {
-  //       Navigator.push(
-  //           context, MaterialPageRoute(builder: (context) => SplashScreens()));
-  //       return;
-  //     },
-  //   );
-  //   fbm.subscribeToTopic('chat');
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,8 +69,4 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
     );
   }
-
-// void subscripeToAdmin() {
-//   fbm.subscribeToTopic('chat');
-// }
 }

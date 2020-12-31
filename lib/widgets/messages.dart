@@ -16,7 +16,11 @@ class Messages extends StatelessWidget {
           .snapshots(),
       builder: (ctx, snapShot) {
         if (snapShot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
         final docs = snapShot.data.docs;
         final user = FirebaseAuth.instance.currentUser;

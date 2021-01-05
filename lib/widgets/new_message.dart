@@ -22,7 +22,9 @@ class _NewMessageState extends State<NewMessage> {
     FirebaseFirestore.instance.collection('chat').add({
       'text': _enteredMessage,
       'createdAt': Timestamp.now(),
+      'userName': userData['userName'],
       'userId': user.uid,
+      'profileImage': userData['profileImage']
     });
     _controller.clear();
     setState(() {

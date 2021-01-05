@@ -25,7 +25,6 @@ class UserService {
     return await FirebaseFirestore.instance
         .collection('users')
         .where('email', isEqualTo: currentUserEmail)
-        // .doc(uid)
         .get()
         .then((querySnapshot) {
       return querySnapshot.docs[0].data();

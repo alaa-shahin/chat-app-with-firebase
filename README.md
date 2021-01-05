@@ -25,4 +25,6 @@ $ git clone https://github.com/alaa-shahin/chat.git
 
 ![Public chat Screen](https://github.com/alaa-shahin/chat/blob/master/chat%20app%20screenshots/Public%20chat%20Screen.png "Public chat Screen")
 
+![Public chat Screen2](https://github.com/alaa-shahin/chat/blob/master/chat%20app%20screenshots/Public%20chat%20Screen2.png "Public chat Screen2")
+
 ![Profile Screen](https://github.com/alaa-shahin/chat/blob/master/chat%20app%20screenshots/profile%20Screen.png "Profile Screen")

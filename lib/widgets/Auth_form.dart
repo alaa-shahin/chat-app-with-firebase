@@ -170,35 +170,13 @@ class _AuthFormState extends State<AuthForm> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40)),
                     ),
-                  Text(
-                    'Or',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                  if (!_isLogin)
-                    RaisedButton(
-                      color: Colors.white,
-                      textColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40)),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image(
-                            image: AssetImage('assets/images/google_logo.png'),
-                            height: 35.0,
-                          ),
-                          Padding(padding: const EdgeInsets.only(left: 10)),
-                          Text("Signin with Google"),
-                        ],
-                      ),
-                      onPressed: () async {
-                        await AuthService().googleSignup();
-                        Navigator.of(context).pushNamed(ChatScreen.routeName);
-                      },
+                  if (_isLogin)
+                    Text(
+                      'Or',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
                     ),
                   if (_isLogin)
                     RaisedButton(
